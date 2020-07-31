@@ -6,7 +6,7 @@ Cadastrar novo cliente
 
 @section('content')
 
-@include('clients.form.client', [
-'rota' => route('clients')
+@include('clients.form', [
+'rota' => route('clients.store')
 ])
 @endsection

@@ -1,0 +1,1 @@
+$('.telefone_celular').inputmask('(99) 99999-9999', { 'placeholder': '(__) _____-____' })

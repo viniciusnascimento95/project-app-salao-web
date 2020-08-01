@@ -6,13 +6,12 @@ Clientes
 
 @section('button-novo')
 <a href="{{route('clients.create')}}" data-toggle="tooltip" class="btn btn-success" tooltip-left="Nova junta médica">
-  <i class="far fa-fw fa-lg fa-plus-square"></i>
+  <i class="fas  fa-lg fa-plus-square"></i>
   Novo
 </a>
 @endsection
 
 @section('content')
-
 <table class="table table-striped">
   <thead>
     <tr>
@@ -21,6 +20,7 @@ Clientes
       <th scope="col">Contato</th>
       <th scope="col">Email</th>
       <th class="text-center" scope="col">Ações</th>
+      <th class="text-center" scope="col">Excluir</th>
     </tr>
   </thead>
   <tbody>
@@ -31,12 +31,29 @@ Clientes
       <td>{{$client->contato}}</td>
       <td>{{$client->email}}</td>
       <td class="text-center">
-        <a href="{{route('clients.edit', $client->id)}}" title="Editar dados" class="">
+        <a href="{{route('clients.edit', $client->id)}}" title="Editar dados" class="text-dark">
             <span class="fa-stack">
                 <i class="fas fa-pencil-alt"></i>
             </span>
         </a>
-    </td>
+        <a href="{{route('clients.show', $client->id)}}" title="Visualizar cliente" class="text-primary">
+          <span class="fa-stack">
+              <i class="fas fa-eye"></i>
+          </span>
+      </a>
+      </td>      
+      <td class="text-center">
+        <form id="formulario" action="{{ route('clients.destroy',$client->id) }}"  method="POST">
+          @csrf
+        @method('DELETE')
+        <a href="{{ route('clients.destroy',$client->id) }}" title="Excluir cliente" class="text-danger">
+            <span class="fa-stack">
+              {{-- <i class="fas fa-trash"></i> --}}
+          </span>
+        </a>           
+          <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este registro?')" class="btn btn-danger"><i class="fas fa-trash"></i>Excluir</button>
+      </form>     
+      </td>
     </tr>
     @empty
     <tr>
@@ -44,5 +61,22 @@ Clientes
     </tr>
     @endforelse
   </tbody>
+  
 </table>
+
+  <!--Paginacao dos dados-->
+  @component('components.page_rodape', ['modelo' => $clients])
+  @endcomponent
+  <!--FIM Paginacao dos dados-->
+
+  <script>
+    $('#formulario').on('submit', function () {
+
+      var confirmado = confirm('Deseja deletar esses dados?');
+
+      if (! confirmado) return false;
+      });
+  </script>
 @endsection
+
+

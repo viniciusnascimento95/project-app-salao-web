@@ -2,10 +2,10 @@
   <aside class="main-sidebar">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link" href="#">Clientes</a>
+        <a class="nav-link" href="{{route('clients.index')}}">Clientes</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Novo client</a>
+        <a class="nav-link" href="{{route('clients.create')}}">Novo cliente</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Agendamentos</a>

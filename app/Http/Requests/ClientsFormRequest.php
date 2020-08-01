@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Requests;
-
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ClientsFormRequest extends FormRequest
 {
@@ -16,12 +17,12 @@ class ClientsFormRequest extends FormRequest
         return true;
     }
 
-    public function rules()
+    public function rules(Request $request)
     {
         return [
-            'nome' => 'required|unique:clients|max:200',
-            'email' => 'required|unique:clients',
-            'contato' => 'required|max:11',
+            'nome' => 'required|max:200',
+            'email' => ['required', Rule::unique('clients')->ignore($request->client)],
+            'contato' => ['required', 'max:15',Rule::unique('clients')->ignore($request->client)],
             'endereco' => 'required|max:200'
         ];
     }
@@ -35,7 +36,6 @@ class ClientsFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.unique' => 'Já existe um dado com esse nome.',
             'email.unique' => 'Já existe um e-mail com esse nome.',
             'contato.unique' => 'Já existe um contato com esse nome.',
         ];

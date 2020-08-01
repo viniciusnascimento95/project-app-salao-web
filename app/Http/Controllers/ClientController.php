@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use Illuminate\Http\Request;
-// use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientsFormRequest;
 
 class ClientController extends Controller
@@ -12,8 +11,7 @@ class ClientController extends Controller
 
     public function index()
     {
-        $clients = Client::all();
-
+        $clients = Client::orderBy('updated_at', 'desc')->paginate(10);
         return view('clients.index', compact('clients'));
     }
 
@@ -26,7 +24,6 @@ class ClientController extends Controller
     {
         $client = new Client();
         $client->fill($request->all());
-        // dd($client);
         $client->save();
 
         return redirect()->route("clients.index");
@@ -34,40 +31,26 @@ class ClientController extends Controller
 
     public function show(Client $client)
     {
-        //
+        return view("clients.show" , compact('client'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Client  $client
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Client $client)
     {
-        //
+        return view("clients.edit" , compact('client'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Client $client)
+    public function update(ClientsFormRequest $request, Client $client)
     {
-        //
+      
+        $client->fill($request->all());
+        $client->update();    
+        return redirect()->route("clients.index");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Client  $client
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return redirect()->route("clients.index");
+        
     }
 }

@@ -1,7 +1,3 @@
-@section('card-title')
-Formulário de cadastro de cliente
-@endsection
-
 <form action="{{ $rota }}" method="POST" onsubmit="Salvando()" enctype="multipart/form-data">
   @csrf
 
@@ -10,43 +6,31 @@ Formulário de cadastro de cliente
   @endisset
 
   <div class="row">
-    <div class="col-sm-6 col-md-8">
+    <div class="col-sm-6 col-md-7">
       <div class="form-group">
-        <label class="">Nome:</label>
-        <input type="text" name="nome" class="form-control {{ $errors->has('nome') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($client) && isset($client->nome) && empty (old('nome')) ? $client->nome : old('nome') }}" title="Nome do cliente">
-        @if($errors->has('nome'))
-        <div class="invalid-feedback">
-          {{$errors->first('nome')}}
-        </div>
-        @endif
+        <label class="">Selecione o cliente:</label>
+        <select class="form-control select2 {{ $errors->has('client_id') ? 'is-invalid': '' }}" style="width: 100%;" name="client_id" title="Selecione o cliente">
+        <option value="1">2</option>
+        <option value="1">2</option>
+        <option value="1">2</option>
+        </select>
       </div>
     </div>
     <div class="col-sm-2 col-md-3">
       <div class="form-group">
-        <label class="">Email:</label>
-        <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($client) && isset($client->email) && empty (old('email')) ? $client->email : old('email') }}" title="E-mail do cliente">
-        @if($errors->has('email'))
+        <label class="">Data e hora:</label>
+        <input type="datetime-local" name="data_hora_agendamento" class="form-control {{ $errors->has('data_hora_agendamento') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($schedule) && isset($schedule->data_hora_agendamento) && empty (old('data_hora_agendamento')) ? $schedule->data_hora_agendamento : old('data_hora_agendamento') }}" title="Selecione o data e hora">
+        @if($errors->has('data_hora_agendamento'))
         <div class="invalid-feedback">
-          {{$errors->first('email')}}
+          {{$errors->first('data_hora_agendamento')}}
         </div>
         @endif
       </div>
     </div>
-    <div class="col-sm-2 col-md-3">
+    <div class="col-sm-3 col-md-2">
       <div class="form-group">
-        <label class="">Contato:</label>
-        <input type="text" name="contato" class="form-control telefone_celular {{ $errors->has('contato') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($client) && isset($client->contato) && empty (old('contato')) ? $client->contato : old('contato') }}" title="Contato">
-        @if($errors->has('contato'))
-        <div class="invalid-feedback">
-          {{$errors->first('contato')}}
-        </div>
-        @endif
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-8">
-      <div class="form-group">
-        <label class="">Endereço:</label>
-        <input type="text" name="endereco" class="form-control {{ $errors->has('endereco') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($client) && isset($client->endereco) && empty (old('endereco')) ? $client->endereco : old('endereco') }}" title="Endereço">
+        <label class="">Realizado ?:</label>
+        <input type="text" name="servico_realizado" class="form-control {{ $errors->has('servico_realizado') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($schedule) && isset($schedule->servico_realizado) && empty (old('servico_realizado')) ? $schedule->servico_realizado : old('servico_realizado') }}" title="Endereço">
         @if($errors->has('endereco'))
         <div class="invalid-feedback">
           {{$errors->first('endereco')}}
@@ -54,12 +38,59 @@ Formulário de cadastro de cliente
         @endif
       </div>
     </div>
+    <div class="col-sm-12">
+      <div class="form-group">
+          <label class="dinfo-label-required">Descrição do serviço:</label>
+          <textarea class="form-control {{ $errors->has('descricao') ? 'is-invalid': '' }}" rows="5" name="descricao"
+              id="descricao">{{isset($schedule) && isset($schedule->descricao) && empty (old('descricao')) ? ($schedule->descricao ? $schedule->descricao : '') : old('parecer') }}</textarea>
+          @if($errors->has('descricao'))
+          <div class="invalid-feedback">
+              {{$errors->first('descricao')}}
+          </div>
+          @endif
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-2">
+      <div class="form-group">
+        <label class="">Valor:</label>
+        <input type="text" name="valor" class="form-control {{ $errors->has('valor') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($schedule) && isset($schedule->valor) && empty (old('valor')) ? $schedule->valor : old('valor') }}" title="Valor do serviço">
+        @if($errors->has('valor'))
+        <div class="invalid-feedback">
+          {{$errors->first('valor')}}
+        </div>
+        @endif
+      </div>
+    </div>
   </div>
 
-  <a href="{{route('clients.index')}}" class="btn btn-primary" data-toggle="tooltip" tooltip-right="Voltar">
+  <a href="{{route('schedules.index')}}" class="btn btn-primary" data-toggle="tooltip" tooltip-right="Voltar">
     <i class="fas fa-fw fa-lg fa-arrow-left"></i> Voltar
   </a>
   <button type="submit" class="btn btn-success" data-toggle="tooltip" tooltip-right="Salvar dados">
     <i class="fas fa-fw fa-lg fa-save"></i> Salvar
   </button>
 </form>
+{{-- @section('scripts') --}}
+<script>
+$('#client_id').select2({
+        language: 'pt-BR',
+        minimumInputLength: 4,
+        ajax: {
+            url: '/client/pesquisar-select2',
+            dataType: 'json',
+            data: function (params) {
+                var query = {
+                    search: params.term,
+                    type: 'public'
+                }
+                return query;
+            },
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            }
+        }
+    });
+</script>
+{{-- @endsection --}}

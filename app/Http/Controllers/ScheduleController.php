@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Schedule;
+use App\Client;
 use Illuminate\Http\Request;
 use App\Http\Requests\SchedulesFormRequest;
 
@@ -18,7 +19,8 @@ class ScheduleController extends Controller
 
     public function create()
     {
-        return view('schedules.create');
+        $clientes = Client::all();
+        return view('schedules.create',compact('clientes'));
     }
 
   
@@ -49,7 +51,6 @@ class ScheduleController extends Controller
         $client->update();    
         return redirect()->route("clients.index");
     }
-
    
     public function destroy(Schedule $schedule)
     {

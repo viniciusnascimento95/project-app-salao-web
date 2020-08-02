@@ -46,6 +46,25 @@ class ClientController extends Controller
         $client->update();    
         return redirect()->route("clients.index");
     }
+    
+    public function getPesquisarSelect2(Request $request)
+    {
+        $inputPesquisa = $request->query('search');
+
+        if (strlen($inputPesquisa) < 3) {
+            return null;
+        }
+
+        $pessoas = Client::all();
+
+        $dadosFormatados = [];
+
+        foreach ($pessoas as $pessoa) {
+            $dadosFormatados[] = ['id' => $pessoa->id, 'text' => $pessoa->nome . " | " . $pessoa->contato];
+        }
+
+        return response()->json($dadosFormatados);
+    }
 
     public function destroy(Client $client)
     {

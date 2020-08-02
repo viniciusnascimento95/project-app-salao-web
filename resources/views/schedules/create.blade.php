@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
-@section('card-header')
+@section('card-title')
 Agendar horário
 @endsection
 
 @section('content')
 
-@include('shedules.form', [
-'rota' => route('shedules.store')
+@include('schedules.form', [
+'rota' => route('schedules.store')
 ])
 @endsection

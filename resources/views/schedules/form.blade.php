@@ -9,10 +9,7 @@
     <div class="col-sm-6 col-md-7">
       <div class="form-group">
         <label class="">Selecione o cliente:</label>
-        <select class="form-control select2 {{ $errors->has('client_id') ? 'is-invalid': '' }}" style="width: 100%;" name="client_id" title="Selecione o cliente">
-        <option value="1">2</option>
-        <option value="1">2</option>
-        <option value="1">2</option>
+        <select name="client_id" id="client" class="form-control {{ $errors->has('client_id') ? 'is-invalid': '' }}" style="width: 100%;" title="Selecione o cliente">
         </select>
       </div>
     </div>
@@ -70,11 +67,11 @@
     <i class="fas fa-fw fa-lg fa-save"></i> Salvar
   </button>
 </form>
-{{-- @section('scripts') --}}
+@section('scripts')
 <script>
-$('#client_id').select2({
+$('#client').select2({
         language: 'pt-BR',
-        minimumInputLength: 4,
+        // minimumInputLength: 1,
         ajax: {
             url: '/client/pesquisar-select2',
             dataType: 'json',
@@ -93,4 +90,4 @@ $('#client_id').select2({
         }
     });
 </script>
-{{-- @endsection --}}
+@endsection

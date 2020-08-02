@@ -11,6 +11,8 @@ class ClientController extends Controller
 
     public function index()
     {
+        // $pessoas = Client::get();
+        // dd($pessoas);
         $clients = Client::orderBy('updated_at', 'desc')->paginate(10);
         return view('clients.index', compact('clients'));
     }
@@ -55,7 +57,8 @@ class ClientController extends Controller
             return null;
         }
 
-        $pessoas = Client::all();
+        // $pessoas = Client::all();
+        $pessoas = Client::get();        
 
         $dadosFormatados = [];
 

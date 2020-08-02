@@ -28,9 +28,10 @@ class ScheduleController extends Controller
     {
         $schedule = new Schedule();
         $schedule->fill($request->all());
+        $schedule->client()->associate($request->client_id);
         $schedule->save();
 
-        return redirect()->route("shedules.index");
+        return redirect()->route("schedules.index");
     }
 
    
@@ -55,6 +56,6 @@ class ScheduleController extends Controller
     public function destroy(Schedule $schedule)
     {
         $schedule->delete();
-        return redirect()->route("shedules.index");
+        return redirect()->route("schedules.index");
     }
 }

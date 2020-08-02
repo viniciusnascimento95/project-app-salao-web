@@ -28,7 +28,7 @@ Agendamentos
     @forelse ($schedules as $shedule)
     <tr>
       <th>{{$shedule->id}}</th>
-      <td>{{$shedule->client()->nome}}</td>
+      <td>{{$shedule->client_id}}</td>
       <td>{{$shedule->data_hora_agendamento}}</td>
       <td>{{$shedule->valor}}</td>
       <td>{{$shedule->servico_realizado}}</td>
@@ -45,10 +45,10 @@ Agendamentos
       </a>
       </td>      
       <td class="text-center">
-        <form id="formulario" action="{{ route('clients.destroy',$shedule->id) }}"  method="POST">
+        <form id="formulario" action="{{ route('schedules.destroy',$shedule->id) }}"  method="POST">
           @csrf
         @method('DELETE')
-        <a href="{{ route('schedules.destroy',$client->id) }}" title="Excluir cliente" class="text-danger">
+        <a href="{{ route('schedules.destroy',$shedule->id) }}" title="Excluir cliente" class="text-danger">
             <span class="fa-stack">
               {{-- <i class="fas fa-trash"></i> --}}
           </span>

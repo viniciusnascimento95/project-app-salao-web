@@ -22,4 +22,10 @@ class Schedule extends Model
     {
         return $this->belongsTo(Client::class, 'client_id', 'id');
     }
+
+    public function data_hora_agendamento_Formated()
+    {
+        return date_format($this->data_hora_agendamento, "d/m/Y H:i");
+    }
+    //qual a view?
 }

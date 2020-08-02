@@ -37377,8 +37377,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/acer/www/laravel/app_salao/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/acer/www/laravel/app_salao/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/blx32/Projetos/PhP/project-app-salao-web/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/blx32/Projetos/PhP/project-app-salao-web/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

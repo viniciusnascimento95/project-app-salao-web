@@ -28,8 +28,8 @@ Agendamentos
     @forelse ($schedules as $shedule)
     <tr>
       <th>{{$shedule->id}}</th>
-      <td>{{$shedule->client_id}}</td>
-      <td>{{$shedule->data_hora_agendamento}}</td>
+      <td>{{$shedule->client->nome}}</td>
+      <td>{{$shedule->data_hora_agendamento->format('d/m/Y H:i')}}</td>
       <td>{{$shedule->valor}}</td>
       <td>{{$shedule->servico_realizado}}</td>
       <td class="text-center">

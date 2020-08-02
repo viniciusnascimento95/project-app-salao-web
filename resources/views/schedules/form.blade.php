@@ -9,14 +9,16 @@
     <div class="col-sm-6 col-md-7">
       <div class="form-group">
         <label class="">Selecione o cliente:</label>
-        <select name="client_id" id="client" class="form-control {{ $errors->has('client_id') ? 'is-invalid': '' }}" style="width: 100%;" title="Selecione o cliente">
+        <select name="client_id" id="client" class="form-control {{ $errors->has('client_id') ? 'is-invalid': '' }}" value="{{ isset($schedule) && isset($schedule->client_id) && empty (old('client_id')) ? $schedule->client_id : old('client_id') }}" style="width: 100%;" title="Selecione o cliente">
+        {{-- <option value="{{$schedule->id}}">{{$schedule->client->nome}}</option> --}}
         </select>
       </div>
     </div>
     <div class="col-sm-2 col-md-3">
       <div class="form-group">
-        <label class="">Data e hora:</label>
-        <input type="datetime-local" name="data_hora_agendamento" class="form-control {{ $errors->has('data_hora_agendamento') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($schedule) && isset($schedule->data_hora_agendamento) && empty (old('data_hora_agendamento')) ? $schedule->data_hora_agendamento : old('data_hora_agendamento') }}" title="Selecione o data e hora">
+        <label class="">Data e hora:</label> 
+        {{-- {{$schedule->data_hora_agendamento->format('d/m/Y H:i')}} --}}
+        <input type="datetime" name="data_hora_agendamento" class="form-control datepicker {{ $errors->has('data_hora_agendamento') ? 'is-invalid': '' }}" value="{{ isset($schedule) && isset($schedule->data_hora_agendamento) && empty (old('data_hora_agendamento')) ? $schedule->data_hora_agendamento->format('d/m/Y H:i') : old('data_hora_agendamento') }}" title="Selecione o data e hora">
         @if($errors->has('data_hora_agendamento'))
         <div class="invalid-feedback">
           {{$errors->first('data_hora_agendamento')}}
@@ -25,9 +27,10 @@
       </div>
     </div>
     <div class="col-sm-3 col-md-2">
-      <div class="form-group">
-        <label class="">Realizado ?:</label>
-        <input type="text" name="servico_realizado" class="form-control {{ $errors->has('servico_realizado') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($schedule) && isset($schedule->servico_realizado) && empty (old('servico_realizado')) ? $schedule->servico_realizado : old('servico_realizado') }}" title="Endereço">
+      <div class="form-check">
+        {{-- <input type="text" name="servico_realizado" class="form-control {{ $errors->has('servico_realizado') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($schedule) && isset($schedule->servico_realizado) && empty (old('servico_realizado')) ? $schedule->servico_realizado : old('servico_realizado') }}" title="Endereço"> --}}
+        <input type="checkbox" class="form-check-input {{ $errors->has('servico_realizado') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($schedule) && isset($schedule->servico_realizado) && empty (old('servico_realizado')) ? $schedule->servico_realizado : old('servico_realizado') }}" name="servico_realizado">
+        <label class="form-check-label">Realizado ?: </label><br>
         @if($errors->has('endereco'))
         <div class="invalid-feedback">
           {{$errors->first('endereco')}}
@@ -39,7 +42,7 @@
       <div class="form-group">
           <label class="dinfo-label-required">Descrição do serviço:</label>
           <textarea class="form-control {{ $errors->has('descricao') ? 'is-invalid': '' }}" rows="5" name="descricao"
-              id="descricao">{{isset($schedule) && isset($schedule->descricao) && empty (old('descricao')) ? ($schedule->descricao ? $schedule->descricao : '') : old('parecer') }}</textarea>
+              id="descricao">{{isset($schedule) && isset($schedule->descricao) && empty (old('descricao')) ? ($schedule->descricao ? $schedule->descricao : '') : old('descricao') }}</textarea>
           @if($errors->has('descricao'))
           <div class="invalid-feedback">
               {{$errors->first('descricao')}}
@@ -69,6 +72,8 @@
 </form>
 @section('scripts')
 <script>
+$('.datepicker').datetimepicker();
+
 $('#client').select2({
         language: 'pt-BR',
         // minimumInputLength: 1,

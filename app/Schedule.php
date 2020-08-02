@@ -16,6 +16,8 @@ class Schedule extends Model
         'servico_realizado'
     ];
 
+    protected $dates = ['data_hora_agendamento'];
+
     public function client() 
     {
         return $this->belongsTo(Client::class, 'client_id', 'id');

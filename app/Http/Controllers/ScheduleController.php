@@ -46,11 +46,15 @@ class ScheduleController extends Controller
         return view("schedules.edit" , compact('schedule'));
     }
 
-    public function update(Request $request, Schedule $schedule)
+    public function update(SchedulesFormRequest $request, Schedule $schedule)
     {
-        $client->fill($request->all());
-        $client->update();    
-        return redirect()->route("clients.index");
+        $schedule->fill($request->all());
+        // dd($client);
+        
+        $schedule->client()->associate($request->client_id);
+        // $client_id = $request->client_id;
+        $schedule->update();    
+        return redirect()->route("schedules.index");
     }
    
     public function destroy(Schedule $schedule)

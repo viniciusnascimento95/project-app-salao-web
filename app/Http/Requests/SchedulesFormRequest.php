@@ -14,11 +14,11 @@ class SchedulesFormRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'client_id' => 'required',
+            // 'client_id' => 'required',
             'data_hora_agendamento' => ['required', Rule::unique('schedules')->ignore($request->schedule)],
             'descricao' => 'required',
-            'valor' => 'required'
-            'servico_realizado' => 'required',
+            'valor' => 'required',
+            'servico_realizado' => 'nullable'
         ];
     }
     public function attributes()

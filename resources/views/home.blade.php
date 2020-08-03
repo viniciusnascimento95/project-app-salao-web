@@ -20,6 +20,11 @@ Principal
                         <br>
                         <p class="card-text"><strong>Descrição: </strong> {{$item->descricao}}</p>
                         <p class="text-right"><strong>Valor: </strong>{{$item->valor}}</p>
+                        <a href="{{route('schedules.edit', $item->id)}}" title="Editar dados" class="text-dark">
+                            <span class="fa-stack">
+                                <i class="fas fa-pencil-alt"></i>
+                            </span>
+                        </a>
                         
                     </div>
                 </div>

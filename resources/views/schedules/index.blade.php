@@ -29,9 +29,15 @@ Agendamentos
     <tr>
       <th>{{$shedule->id}}</th>
       <td>{{$shedule->client->nome}}</td>
-      <td>{{$shedule->data_hora_agendamento->format('d/m/Y H:i')}}</td>
+      {{-- <td>{{$shedule->data_hora_agendamento->format('d/m/Y H:i')}}</td> --}}
+      <td>{{$shedule->data_hora_agendamento}}</td>
       <td>{{$shedule->valor}}</td>
-      <td>{{$shedule->servico_realizado}}</td>
+      @if ($shedule->servico_realizado == 0 )
+      <td>Não realizado</td> 
+      @else
+      <td>realizado</td>         
+      @endif
+      
       <td class="text-center">
         <a href="{{route('schedules.edit', $shedule->id)}}" title="Editar dados" class="text-dark">
             <span class="fa-stack">

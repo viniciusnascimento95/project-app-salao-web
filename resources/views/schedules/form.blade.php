@@ -20,9 +20,9 @@
             <div class="form-group">
                 <label class="">Data e hora:</label>
                 {{-- {{$schedule->data_hora_agendamento_Formated()}} --}}
-                {{Form::date('data_hora_agendamento', empty($schedule->data_hora_agendamento)?null:$schedule->data_hora_agendamento)}}
+                {{-- {{Form::date('data_hora_agendamento', empty($schedule->data_hora_agendamento)?null:$schedule->data_hora_agendamento)}} --}}
                 <input type="datetime" name="data_hora_agendamento"
-                       class="form-control {{ $errors->has('data_hora_agendamento') ? 'is-invalid': '' }}"
+                       class="form-control agendamento {{ $errors->has('data_hora_agendamento') ? 'is-invalid': '' }}"
                        value="{{isset($schedule) && isset($schedule->data_hora_agendamento) && empty (old('data_hora_agendamento')) ?
         $schedule->data_hora_agendamento_Formated() : old('data_hora_agendamento')}}" title="Selecione o data e hora">
 
@@ -39,7 +39,7 @@
         <div class="col-sm-3 col-md-2">
 
         <!-- Modificado Recentemente -->
-            <div class="form-check">
+            {{-- <div class="form-check">
                 <label class="form-check-label" for="servico_realizado">Realizado ?: </label><br>
                 {{Form::checkbox('servico_realizado', isset($schedule) && isset($schedule->servico_realizado) && empty (old('servico_realizado')) ? $schedule->servico_realizado : old('servico_realizado'))}}
 
@@ -48,16 +48,14 @@
                         {{$errors->first('endereco')}}
                     </div>
                 @endif
-            </div>
+            </div> --}}
 
 
             <div class="form-check">
                 {{-- <input type="text" name="servico_realizado" class="form-control {{ $errors->has('servico_realizado') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($schedule) && isset($schedule->servico_realizado) && empty (old('servico_realizado')) ? $schedule->servico_realizado : old('servico_realizado') }}" title="Endereço"> --}}
                 <label class="form-check-label" for="servico_realizado">Realizado ?: </label><br>
-                <input type="checkbox" id="servico_realizado"
-                       class="form-check-input {{ $errors->has('servico_realizado') ? 'is-invalid': '' }}"
-                       value="{{ isset($schedule) && isset($schedule->servico_realizado) && empty (old('servico_realizado')) ? $schedule->servico_realizado : old('servico_realizado') }}"
-                       name="servico_realizado">
+                <input type="text" class="form-control {{ $errors->has('servico_realizado') ? 'is-invalid': '' }}" value="{{ isset($schedule) && isset($schedule->servico_realizado) && empty (old('servico_realizado')) ? $schedule->servico_realizado : old('servico_realizado') }}"
+                       name="servico_realizado" placeholder="0 par não realizado | 1 para realizado">
 
                 @if($errors->has('endereco'))
                     <div class="invalid-feedback">
@@ -104,8 +102,6 @@
 </form>
 @section('scripts')
     <script>
-        // $('.datepicker').datetimepicker();
-
         $('#client').select2({
             language: 'pt-BR',
             // minimumInputLength: 1,

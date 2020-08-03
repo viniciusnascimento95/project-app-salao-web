@@ -15,7 +15,7 @@ class SchedulesFormRequest extends FormRequest
     {
         return [
             // 'client_id' => 'required',
-            'data_hora_agendamento' => ['required', Rule::unique('schedules')->ignore($request->schedule)],
+            'data_hora_agendamento' => 'nullable',
             'descricao' => 'required',
             'valor' => 'required',
             'servico_realizado' => 'nullable'

@@ -13,7 +13,7 @@ class ClientController extends Controller
     {
         // $pessoas = Client::get();
         // dd($pessoas);
-        $clients = Client::orderBy('updated_at', 'desc')->paginate(10);
+        $clients = Client::orderBy('updated_at', 'desc')->paginate(2);
         return view('clients.index', compact('clients'));
     }
 

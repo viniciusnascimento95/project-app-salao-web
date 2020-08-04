@@ -15,26 +15,25 @@ Principal
                 @foreach ($agendamentos as $item)
                 <div class="form-group">
                     <div class="card-body">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="alert alert-secondary">
-                          <span class=""><i class="fa fa-calendar"></i> {{$item->data_hora_agendamento->format('d/m/Y H:i')}}</span><br>
-                          <div class="card-text">
-                            <span class="info-box-text text-capitalize"><strong>Cliente(a): </strong> {{$item->client->nome}} </span><br>
-                            <span class="info-box-text text-capitalize"><strong>Contato(a): </strong> {{$item->client->contato}} </span><br>
-                            <span class="info-box-number"><strong>Valor : </strong>{{$item->valor}}</span><br>
-                          </div>
-                          <span >{{$item->descricao}}</span>
-                         
-                        </div> 
-                        <a href="{{route('schedules.edit', $item->id)}}" title="Editar dados" class="btn btn-primary">
-                            Atualizar agendamento
-                        </a>                     
-
-                      </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="alert alert-secondary">
+                                <p class="text-right">
+                                    <a href="{{route('schedules.edit', $item->id)}}" title="Editar dados" class="btn btn-primary">
+                                        Atualizar agendamento
+                                    </a>       
+                                    </p> 
+                                <span class=""><i class="fa fa-calendar"></i> {{$item->data_hora_agendamento->format('d/m/Y H:i')}}</span><br>
+                                <div class="card-text">
+                                    <span class="info-box-text text-capitalize"><strong>Cliente(a): </strong> {{$item->client->nome}} </span><br>
+                                    <span class="info-box-text text-capitalize"><strong>Contato(a): </strong> {{$item->client->contato}} </span><br>
+                                    <span class="info-box-number"><strong>Valor : </strong>{{$item->valor}}</span><br>
+                                </div>
+                                <span>{{$item->descricao}}</span>
+                            </div>                                    
+                        </div>
                     </div>
                 </div>
-                @endforeach
-               
+                @endforeach              
     </div>
 </div> 
 @endsection

@@ -14,18 +14,23 @@ Principal
 
                 @foreach ($agendamentos as $item)
                 <div class="form-group">
-                    <div class="card" style="width: 30rem; border-radius: 15px;" >                
-                        <h5 class="text-center text-capitalize"><strong>Cliente(a): </strong> {{$item->client->nome}} - {{$item->client->contato}} </h5>
-                        <p class="text-left"><strong>Data: </strong> {{$item->data_hora_agendamento->format('d/m/Y H:i')}}</p>
-                        <br>
-                        <p class="card-text"><strong>Descrição: </strong> {{$item->descricao}}</p>
-                        <p class="text-right"><strong>Valor: </strong>{{$item->valor}}</p>
-                        <a href="{{route('schedules.edit', $item->id)}}" title="Editar dados" class="text-dark">
-                            <span class="fa-stack">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                        </a>
-                        
+                    <div class="card-body">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="alert alert-secondary">
+                          <span class=""><i class="fa fa-calendar"></i> {{$item->data_hora_agendamento->format('d/m/Y H:i')}}</span><br>
+                          <div class="card-text">
+                            <span class="info-box-text text-capitalize"><strong>Cliente(a): </strong> {{$item->client->nome}} </span><br>
+                            <span class="info-box-text text-capitalize"><strong>Contato(a): </strong> {{$item->client->contato}} </span><br>
+                            <span class="info-box-number"><strong>Valor : </strong>{{$item->valor}}</span><br>
+                          </div>
+                          <span >{{$item->descricao}}</span>
+                         
+                        </div> 
+                        <a href="{{route('schedules.edit', $item->id)}}" title="Editar dados" class="btn btn-primary">
+                            Atualizar agendamento
+                        </a>                     
+
+                      </div>
                     </div>
                 </div>
                 @endforeach

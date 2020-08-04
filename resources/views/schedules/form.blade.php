@@ -6,7 +6,7 @@
     @endisset
 
     <div class="row">
-        <div class="col-sm-6 col-md-7">
+        <div class="col-sm-6 ">
             <div class="form-group">
                 <label class="">Selecione o cliente:</label>
                 {!! Form::select('client_id',$client_select,null,['style="width: 100%;" title="Selecione o cliente"','class'=>'form-control']) !!}
@@ -16,18 +16,13 @@
               </select> --}}
             </div>
         </div>
-        <div class="col-sm-2 col-md-3">
+        <div class="col-sm-5 ">
             <div class="form-group">
                 <label class="">Data e hora:</label>
-                {{-- {{$schedule->data_hora_agendamento_Formated()}} --}}
-                {{-- {{Form::date('data_hora_agendamento', empty($schedule->data_hora_agendamento)?null:$schedule->data_hora_agendamento)}} --}}
-                <input type="datetime" name="data_hora_agendamento"
+                <input type="datetime-local" name="data_hora_agendamento"
                        class="form-control agendamento {{ $errors->has('data_hora_agendamento') ? 'is-invalid': '' }}"
                        value="{{isset($schedule) && isset($schedule->data_hora_agendamento) && empty (old('data_hora_agendamento')) ?
-        $schedule->data_hora_agendamento_Formated() : old('data_hora_agendamento')}}" title="Selecione o data e hora">
-
-                {{-- isset($schedule) && isset($schedule->data_hora_agendamento) && empty (old('data_hora_agendamento')) ?
-                $schedule->data_hora_agendamento_Formated() : old('data_hora_agendamento') --}}
+                       $schedule->data_hora_agendamento_Formated() : old('data_hora_agendamento')}}" title="Selecione o data e hora">
 
                 @if($errors->has('data_hora_agendamento'))
                     <div class="invalid-feedback">
@@ -36,26 +31,17 @@
                 @endif
             </div>
         </div>
-        <div class="col-sm-3 col-md-2">
+        <div class="col-sm-3 ">
 
-        <!-- Modificado Recentemente -->
-            {{-- <div class="form-check">
+            <div class="form-grup">
+
                 <label class="form-check-label" for="servico_realizado">Realizado ?: </label><br>
-                {{Form::checkbox('servico_realizado', isset($schedule) && isset($schedule->servico_realizado) && empty (old('servico_realizado')) ? $schedule->servico_realizado : old('servico_realizado'))}}
 
-                @if($errors->has('endereco'))
-                    <div class="invalid-feedback">
-                        {{$errors->first('endereco')}}
-                    </div>
-                @endif
-            </div> --}}
+                <select class="form-control {{ $errors->has('servico_realizado') ? 'is-invalid': '' }}" name="servico_realizado">
+                  <option value="0">Não realizado</option>
+                  <option value="1">Realizado</option>
 
-
-            <div class="form-check">
-                {{-- <input type="text" name="servico_realizado" class="form-control {{ $errors->has('servico_realizado') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($schedule) && isset($schedule->servico_realizado) && empty (old('servico_realizado')) ? $schedule->servico_realizado : old('servico_realizado') }}" title="Endereço"> --}}
-                <label class="form-check-label" for="servico_realizado">Realizado ?: </label><br>
-                <input type="text" class="form-control {{ $errors->has('servico_realizado') ? 'is-invalid': '' }}" value="{{ isset($schedule) && isset($schedule->servico_realizado) && empty (old('servico_realizado')) ? $schedule->servico_realizado : old('servico_realizado') }}"
-                       name="servico_realizado" placeholder="0 par não realizado | 1 para realizado">
+                </select>
 
                 @if($errors->has('endereco'))
                     <div class="invalid-feedback">
@@ -77,7 +63,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-sm-6 col-md-2">
+        <div class="col-sm-6 ">
             <div class="form-group">
                 <label class="">Valor:</label>
                 <input type="text" name="valor" class="form-control {{ $errors->has('valor') ? 'is-invalid': '' }}"

@@ -30,19 +30,24 @@ class ScheduleController extends Controller
 
 
     public function store(Request $request)
-    {
+    { // verificar o editar e a mensagem success
+        //Remover caracter em posição errada, por isso não estava inserindo.
+//        dd($request->data_hora_agendamento)               ;
+        $request->data_hora_agendamento = str_replace('T', ' ', $request->data_hora_agendamento);
+        $request->data_hora_agendamento = date("d/m/Y H:i", strtotime($request->data_hora_agendamento)) ;
+
         $schedule = new Schedule();
         $schedule->fill($request->all());
         $schedule->client()->associate($request->client_id);
         $schedule->save();
 
-        return redirect()->route("schedules.index");
+        return redirect()->route("schedules.index")
+          ->with('success','Agendamento cadastrado com sucesso');
     }
 
 
     public function show($id)
     {
-
         $schedule=Schedule::find($id);
         return view("schedules.show", compact('schedule'));
     }
@@ -61,12 +66,11 @@ class ScheduleController extends Controller
     public function update(SchedulesFormRequest $request, Schedule $schedule)
     {
         $schedule->fill($request->all());
-        // dd($client);
-
         $schedule->client()->associate($request->client_id);
-        // $client_id = $request->client_id;
         $schedule->update();
-        return redirect()->route("schedules.index");
+                 
+        return redirect()->route("schedules.index")
+          ->with('success','Agendamento atualizado com sucesso');
     }
 
     public function destroy(Schedule $schedule)

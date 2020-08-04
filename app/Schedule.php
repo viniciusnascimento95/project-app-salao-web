@@ -23,9 +23,11 @@ class Schedule extends Model
         return $this->belongsTo(Client::class, 'client_id', 'id');
     }
 
-    public function data_hora_agendamento_Formated()
+    public function data_hora_agendamento_Formated():string
     {
-        return date_format($this->data_hora_agendamento, "d/m/Y H:i");
+      $data_hora_agendamento = str_replace(' ', 'T', $this->data_hora_agendamento);
+
+      return $data_hora_agendamento;
     }
 
 }

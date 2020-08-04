@@ -19,7 +19,7 @@ Agendamentos
       <th scope="col">Cliente</th>
       <th scope="col">Data do agendamento</th>
       <th scope="col">valor</th>
-      <th scope="col">Realizado</th>      
+      <th scope="col">Realizado</th>
       <th class="text-center" scope="col">Ações</th>
       <th class="text-center" scope="col">Excluir</th>
     </tr>
@@ -33,11 +33,11 @@ Agendamentos
       <td>{{$shedule->data_hora_agendamento}}</td>
       <td>{{$shedule->valor}}</td>
       @if ($shedule->servico_realizado == 0 )
-      <td>Não realizado</td> 
+      <td>Não realizado</td>
       @else
-      <td>realizado</td>         
+      <td>Realizado</td>
       @endif
-      
+
       <td class="text-center">
         <a href="{{route('schedules.edit', $shedule->id)}}" title="Editar dados" class="text-dark">
             <span class="fa-stack">
@@ -49,7 +49,7 @@ Agendamentos
               <i class="fas fa-eye"></i>
           </span>
       </a>
-      </td>      
+      </td>
       <td class="text-center">
         <form id="formulario" action="{{ route('schedules.destroy',$shedule->id) }}"  method="POST">
           @csrf
@@ -58,9 +58,9 @@ Agendamentos
             <span class="fa-stack">
               {{-- <i class="fas fa-trash"></i> --}}
           </span>
-        </a>           
+        </a>
           <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este agendamento de serviço?')" class="btn btn-danger"><i class="fas fa-trash"></i>Excluir</button>
-      </form>     
+      </form>
       </td>
     </tr>
     @empty
@@ -68,10 +68,30 @@ Agendamentos
         <td colspan="7" align="center"><label style="font-weight: bolder">Nenhum agendamento cadastrado.</label></td>
     </tr>
     @endforelse
-  </tbody>  
+  </tbody>
 </table>
   <!--Paginacao dos dados-->
   {{-- @component('components.page_rodape', ['modelo' => $schedules])
   @endcomponent --}}
   <!--FIM Paginacao dos dados-->
+@endsection
+@section('scripts')
+@if ($message = Session::get('success'))
+    <script>
+        Swal.fire({
+            type: 'success',
+            title: 'Sucesso!',
+            text: '{{ $message }}',
+            showConfirmButton: true,
+            timer: 10000
+        })
+    </script>
+@endif
+<script>
+$(function () {
+   
+
+  })
+
+</script>
 @endsection

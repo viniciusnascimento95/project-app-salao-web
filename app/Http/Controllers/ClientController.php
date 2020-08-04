@@ -11,8 +11,6 @@ class ClientController extends Controller
 
     public function index()
     {
-        // $pessoas = Client::get();
-        // dd($pessoas);
         $clients = Client::orderBy('updated_at', 'desc')->paginate(2);
         return view('clients.index', compact('clients'));
     }
@@ -43,12 +41,12 @@ class ClientController extends Controller
 
     public function update(ClientsFormRequest $request, Client $client)
     {
-      
+
         $client->fill($request->all());
-        $client->update();    
+        $client->update();
         return redirect()->route("clients.index");
     }
-    
+
     public function getPesquisarSelect2(Request $request)
     {
         $inputPesquisa = $request->query('search');
@@ -56,9 +54,8 @@ class ClientController extends Controller
         if (strlen($inputPesquisa) < 3) {
             return null;
         }
-
-        // $pessoas = Client::all();
-        $pessoas = Client::get();        
+        
+        $pessoas = Client::get();
 
         $dadosFormatados = [];
 
@@ -73,6 +70,6 @@ class ClientController extends Controller
     {
         $client->delete();
         return redirect()->route("clients.index");
-        
+
     }
 }

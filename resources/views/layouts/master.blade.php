@@ -72,8 +72,7 @@
   <div class="container-fluid">
     <div class="row">
       @include('layouts.menu')
-      <div class="col-sm-8">
-
+      <div class="col-sm-10">
         <div class="card">
           <div class="card-header">
             <strong>@yield('card-title')</strong>

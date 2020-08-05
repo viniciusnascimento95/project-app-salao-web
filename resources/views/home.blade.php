@@ -9,7 +9,6 @@ Principal
         background-size: cover;
         border-radius: 15px;    }
 </style>
-
 @section('content')
 <div class="container-fluid" id="home">
     <div class="row">

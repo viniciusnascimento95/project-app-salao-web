@@ -9,7 +9,8 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }} {{ app()->version() }}</title>
+  {{-- <title>{{ config('app.name', 'Laravel') }} {{ app()->version() }}</title> --}}
+  <title>Sistema de agendamento</title>
 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">

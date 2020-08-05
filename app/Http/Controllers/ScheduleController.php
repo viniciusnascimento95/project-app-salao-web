@@ -14,7 +14,6 @@ class ScheduleController extends Controller
 
     public function index()
     {
-        // $schedules = Schedule::orderBy('updated_at', 'desc')->paginate(10);
         $schedules = Schedule::orderBy('updated_at', 'desc')->paginate(10);
         return view('schedules.index', compact('schedules'));
     }
@@ -22,13 +21,8 @@ class ScheduleController extends Controller
     public function create()
     {
         $clientes = Client::all();
-        
-        // foreach ($clientes as $x) {
-        //     $client_select[] = [$x->id => $x->nome];
-        // }
         return view('schedules.create', compact('clientes'));
     }
-
 
     public function store(Request $request)
     { 
@@ -45,13 +39,11 @@ class ScheduleController extends Controller
           ->with('success','Agendamento cadastrado com sucesso');
     }
 
-
     public function show($id)
     {
         $schedule = Schedule::find($id);
         return view("schedules.show", compact('schedule'));
     }
-
 
     public function edit(Schedule $schedule)
     {

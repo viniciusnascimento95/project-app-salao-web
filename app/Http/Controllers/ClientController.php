@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Schedule;
 use Illuminate\Http\Request;
 use App\Http\Requests\ClientsFormRequest;
 
@@ -11,12 +12,12 @@ class ClientController extends Controller
 
     public function index()
     {
-        $clients = Client::orderBy('updated_at', 'desc')->paginate(2);
+        $clients = Client::orderBy('updated_at', 'desc')->paginate(10);
         return view('clients.index', compact('clients'));
     }
 
     public function create()
-    {
+    {        
         return view("clients.create");
     }
 
@@ -30,8 +31,11 @@ class ClientController extends Controller
     }
 
     public function show(Client $client)
-    {
-        return view("clients.show" , compact('client'));
+    {       
+        $schedules = Schedule::whereClient_id($client->id)->orderBy('updated_at', 'desc')->paginate(10);
+        $total = Schedule::whereClient_id($client->id)->sum('valor');
+       
+        return view("clients.show" , compact('client', 'schedules', 'total'));
     }
 
     public function edit(Client $client)

@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $agendamentos = Schedule::where('servico_realizado', false)->get();
+        $agendamentos = Schedule::where('servico_realizado', false)->paginate(6);
         return view('home', compact('agendamentos'));
     }
 }

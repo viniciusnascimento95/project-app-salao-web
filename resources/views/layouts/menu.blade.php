@@ -16,6 +16,9 @@
       <li class="nav-item">
         <a class="nav-link text-white" href="{{route('schedules.create')}}">Novo agendamento</a>
       </li> 
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{{route('schedules.create')}}">Relatório</a>
+      </li> 
     </ul>
   </aside>
 </div>

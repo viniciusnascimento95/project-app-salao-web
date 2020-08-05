@@ -10,6 +10,7 @@ class Schedule extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'client_id',
         'descricao',
         'data_hora_agendamento',
         'valor',

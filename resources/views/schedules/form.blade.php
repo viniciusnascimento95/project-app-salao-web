@@ -6,19 +6,20 @@
     @endisset
 
     <div class="row">
-        <div class="col-sm-6 ">
+        <div class="col-sm-5">
             <div class="form-group">
-                <label class="">Selecione o cliente:</label>
-                {!! Form::select('client_id',$client_select,null,['style="width: 100%;" title="Selecione o cliente"','class'=>'form-control']) !!}
-
-                {{--<select name="client_id" id="client" class="form-control {{ $errors->has('client_id') ? 'is-invalid': '' }}" value="{{ isset($schedule) && isset($schedule->client_id) && empty (old('client_id')) ? $schedule->client_id : old('client_id') }}" >
-              <option selected value="{{$schedule->id}}">{{$schedule->client->nome}}</option>
-              </select> --}}
+            <label class="">Selecione o cliente:</label>
+                <select class="form-control select2 {{ $errors->has('client_id') ? 'is-invalid': '' }}" style="width: 100%;" name="client_id" title="Selecione o cliente">
+                    @if(Request::old('client_id') == NULL && isset($schedule))
+                    <option value="{{$cliente->id}}">{{$cliente->nome}} / {{$cliente->contato}}</option>
+                    @endif
+                </select>
             </div>
         </div>
-        <div class="col-sm-5 ">
+
+        <div class="col-sm-5">
             <div class="form-group">
-                <label class="">Data e hora:</label>
+                <label >Data e hora:</label>
                 <input type="datetime-local" name="data_hora_agendamento"
                        class="form-control agendamento {{ $errors->has('data_hora_agendamento') ? 'is-invalid': '' }}"
                        value="{{isset($schedule) && isset($schedule->data_hora_agendamento) && empty (old('data_hora_agendamento')) ?
@@ -31,26 +32,16 @@
                 @endif
             </div>
         </div>
-        <div class="col-sm-3 ">
-
-            <div class="form-grup">
-
-                <label class="form-check-label" for="servico_realizado">Realizado ?: </label><br>
-
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label>Realizado ?: </label><br>
                 <select class="form-control {{ $errors->has('servico_realizado') ? 'is-invalid': '' }}" name="servico_realizado">
                   <option value="0">Não realizado</option>
                   <option value="1">Realizado</option>
-
                 </select>
-
-                @if($errors->has('endereco'))
-                    <div class="invalid-feedback">
-                        {{$errors->first('endereco')}}
-                    </div>
-                @endif
             </div>
         </div>
-        <div class="col-sm-12">
+        <div class="col-sm-12 col-md-12">
             <div class="form-group">
                 <label class="dinfo-label-required">Descrição do serviço:</label>
                 <textarea class="form-control {{ $errors->has('descricao') ? 'is-invalid': '' }}" rows="5"
@@ -63,7 +54,8 @@
                 @endif
             </div>
         </div>
-        <div class="col-sm-6 ">
+        
+        <div class="col-md-2">
             <div class="form-group">
                 <label class="">Valor:</label>
                 <input type="text" name="valor" class="form-control {{ $errors->has('valor') ? 'is-invalid': '' }}"
@@ -88,7 +80,7 @@
 </form>
 @section('scripts')
     <script>
-        $('#client').select2({
+        $('.select2').select2({
             language: 'pt-BR',
             // minimumInputLength: 1,
             ajax: {

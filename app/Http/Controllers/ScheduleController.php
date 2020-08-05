@@ -15,13 +15,14 @@ class ScheduleController extends Controller
     public function index()
     {
         // $schedules = Schedule::orderBy('updated_at', 'desc')->paginate(10);
-        $schedules = Schedule::all();
+        $schedules = Schedule::orderBy('updated_at', 'desc')->paginate(10);
         return view('schedules.index', compact('schedules'));
     }
 
     public function create()
     {
         $clientes = Client::all();
+        
         foreach ($clientes as $x) {
             $client_select[] = [$x->id => $x->nome];
         }
@@ -30,9 +31,8 @@ class ScheduleController extends Controller
 
 
     public function store(Request $request)
-    { // verificar o editar e a mensagem success
-        //Remover caracter em posição errada, por isso não estava inserindo.
-//        dd($request->data_hora_agendamento)               ;
+    { 
+                
         $request->data_hora_agendamento = str_replace('T', ' ', $request->data_hora_agendamento);
         $request->data_hora_agendamento = date("d/m/Y H:i", strtotime($request->data_hora_agendamento)) ;
 
@@ -48,19 +48,20 @@ class ScheduleController extends Controller
 
     public function show($id)
     {
-        $schedule=Schedule::find($id);
+        $schedule = Schedule::find($id);
         return view("schedules.show", compact('schedule'));
     }
 
 
     public function edit(Schedule $schedule)
     {
-        $clientes = Client::all();
-        foreach ($clientes as $x) {
-            $client_select[] = [$x->id => $x->nome];
-        }
+        $cliente = Client::find($schedule->client_id);
+        
+        // foreach ($clientes as $x) {
+        //     $client_select[] = [$x->id => $x->nome];
+        // }
 
-        return view("schedules.edit", compact('schedule','client_select'));
+        return view("schedules.edit", compact('schedule', 'cliente'));
     }
 
     public function update(SchedulesFormRequest $request, Schedule $schedule)

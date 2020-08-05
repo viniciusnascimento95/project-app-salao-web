@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 Route::resource('clients', 'ClientController');
 Route::get('/client/pesquisar-select2', 'ClientController@getPesquisarSelect2')->name('client.getPesquisarSelect2');
 Route::resource('schedules', 'ScheduleController');

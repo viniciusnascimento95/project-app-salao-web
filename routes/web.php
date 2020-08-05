@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Auth::routes();
-
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('clients', 'ClientController');
 Route::get('/client/pesquisar-select2', 'ClientController@getPesquisarSelect2')->name('client.getPesquisarSelect2');

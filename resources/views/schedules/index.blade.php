@@ -73,11 +73,12 @@ Agendamentos
 </div>
 
   <!--Paginacao dos dados-->
-  {{-- @component('components.page_rodape', ['modelo' => $schedules])
-  @endcomponent --}}
+  @component('components.page_rodape', ['modelo' => $schedules])
+  @endcomponent
   <!--FIM Paginacao dos dados-->
 @endsection
 @section('scripts')
+
 @if ($message = Session::get('success'))
     <script>
         Swal.fire({
@@ -89,11 +90,4 @@ Agendamentos
         })
     </script>
 @endif
-<script>
-$(function () {
-   
-
-  })
-
-</script>
 @endsection

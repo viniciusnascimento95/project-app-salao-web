@@ -11,6 +11,10 @@ use phpDocumentor\Reflection\Types\Resource_;
 
 class ScheduleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -24,7 +28,7 @@ class ScheduleController extends Controller
         return view('schedules.create', compact('clientes'));
     }
 
-    public function store(Request $request)
+    public function store(SchedulesFormRequest $request)
     { 
                 
         $request->data_hora_agendamento = str_replace('T', ' ', $request->data_hora_agendamento);
@@ -48,11 +52,6 @@ class ScheduleController extends Controller
     public function edit(Schedule $schedule)
     {
         $cliente = Client::find($schedule->client_id);
-        
-        // foreach ($clientes as $x) {
-        //     $client_select[] = [$x->id => $x->nome];
-        // }
-
         return view("schedules.edit", compact('schedule', 'cliente'));
     }
 

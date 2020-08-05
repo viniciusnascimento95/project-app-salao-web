@@ -21,7 +21,7 @@ Clientes
         <th scope="col">Contato</th>
         <th scope="col">Email</th>
         <th class="text-center" scope="col">Ações</th>
-        <th class="text-center" scope="col">Excluir</th>
+        {{-- <th class="text-center" scope="col">Excluir</th> --}}
       </tr>
     </thead>
     <tbody>
@@ -43,18 +43,18 @@ Clientes
             </span>
         </a>
         </td>      
-        <td class="text-center">
+        {{-- <td class="text-center">
           <form id="formulario" action="{{ route('clients.destroy',$client->id) }}"  method="POST">
             @csrf
           @method('DELETE')
           <a href="{{ route('clients.destroy',$client->id) }}" title="Excluir cliente" class="text-danger">
               <span class="fa-stack">
-                {{-- <i class="fas fa-trash"></i> --}}
+                <i class="fas fa-trash"></i>
             </span>
           </a>           
             <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este registro?')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-        </form>     
-        </td>
+          </form>     
+        </td> --}}
       </tr>
       @empty
       <tr>

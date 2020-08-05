@@ -9,6 +9,10 @@ use App\Http\Requests\ClientsFormRequest;
 
 class ClientController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -49,13 +53,14 @@ class ClientController extends Controller
         $client->fill($request->all());
         $client->update();
         return redirect()->route("clients.index");
+
     }
 
     public function getPesquisarSelect2(Request $request)
     {
         $inputPesquisa = $request->query('search');
 
-        if (strlen($inputPesquisa) < 3) {
+        if (strlen($inputPesquisa) < 1) {
             return null;
         }
         

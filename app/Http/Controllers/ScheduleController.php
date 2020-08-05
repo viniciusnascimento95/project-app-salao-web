@@ -23,10 +23,10 @@ class ScheduleController extends Controller
     {
         $clientes = Client::all();
         
-        foreach ($clientes as $x) {
-            $client_select[] = [$x->id => $x->nome];
-        }
-        return view('schedules.create', compact('clientes', 'client_select'));
+        // foreach ($clientes as $x) {
+        //     $client_select[] = [$x->id => $x->nome];
+        // }
+        return view('schedules.create', compact('clientes'));
     }
 
 

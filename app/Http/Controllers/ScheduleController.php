@@ -30,9 +30,9 @@ class ScheduleController extends Controller
 
     public function store(SchedulesFormRequest $request)
     { 
-                
+        $request->valor = number_format($request->valor, 2, ',', '.');
         $request->data_hora_agendamento = str_replace('T', ' ', $request->data_hora_agendamento);
-        $request->data_hora_agendamento = date("d/m/Y H:i", strtotime($request->data_hora_agendamento)) ;
+        $request->data_hora_agendamento = date("d/m/Y H:i", strtotime($request->data_hora_agendamento));
 
         $schedule = new Schedule();
         $schedule->fill($request->all());
@@ -57,6 +57,12 @@ class ScheduleController extends Controller
 
     public function update(SchedulesFormRequest $request, Schedule $schedule)
     {
+        // $request->valor = number_format($request->valor, 2, ',', '.');
+        $request->valor = str_replace('.', ',',$request->valor);
+        
+        $request->data_hora_agendamento = str_replace('T', ' ', $request->data_hora_agendamento);
+        $request->data_hora_agendamento = date("d/m/Y H:i", strtotime($request->data_hora_agendamento));
+        
         $schedule->fill($request->all());
         $schedule->client()->associate($request->client_id);
         $schedule->update();

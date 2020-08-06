@@ -14,10 +14,10 @@ class SchedulesFormRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            // 'client_id' => 'required',
-            'data_hora_agendamento' => 'nullable',
+            'client_id' => 'required',
+            'data_hora_agendamento' => 'required',
             'descricao' => 'required',
-            'valor' => 'required',
+            'valor' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'servico_realizado' => 'nullable'
         ];
     }

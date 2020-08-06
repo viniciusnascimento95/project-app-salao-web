@@ -76,4 +76,10 @@ class ScheduleController extends Controller
         $schedule->delete();
         return redirect()->route("schedules.index");
     }
+    public function report()
+    {
+        $schedules = Schedule::orderBy('data_hora_agendamento', 'desc')->paginate(30);
+        // $total = Schedule::whereClient_id($client->id)->sum('valor');
+        return view('schedules.report', compact('schedules'));
+    }
 }

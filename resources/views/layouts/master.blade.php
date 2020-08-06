@@ -8,6 +8,7 @@
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link rel="shortcut icon" href="http://sstatic.net/so/favicon.ico">
 
   {{-- <title>{{ config('app.name', 'Laravel') }} {{ app()->version() }}</title> --}}
   <title>Sistema de agendamento</title>

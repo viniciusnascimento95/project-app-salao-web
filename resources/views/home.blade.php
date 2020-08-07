@@ -43,5 +43,4 @@ Principal
 </div> 
 @endsection
 @section('scripts')
-
 @endsection

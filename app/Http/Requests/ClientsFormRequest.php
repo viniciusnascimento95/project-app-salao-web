@@ -23,7 +23,7 @@ class ClientsFormRequest extends FormRequest
             'nome' => 'required|max:200',
             'email' => ['nullable', Rule::unique('clients')->ignore($request->client)],
             'contato' => ['required', 'max:15',Rule::unique('clients')->ignore($request->client)],
-            'endereco' => 'required|max:200'
+            'endereco' => 'nullable|max:200'
         ];
     }
     public function attributes()

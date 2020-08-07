@@ -15,7 +15,7 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->longText('descricao');
+            $table->longText('descricao')->nullable();
             $table->dateTime('data_hora_agendamento')->unique();
             // $table->dateTime('data_hora_agendamento')->nullable();
             $table->decimal('valor', 9,2)->nullable();

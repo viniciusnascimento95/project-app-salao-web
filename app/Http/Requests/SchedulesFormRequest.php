@@ -16,8 +16,8 @@ class SchedulesFormRequest extends FormRequest
         return [
             'client_id' => 'required',
             'data_hora_agendamento' => 'required',
-            'descricao' => 'required',
-            'valor' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'descricao' => 'nullable',
+            'valor' => 'nullable|regex:/^\d+(\.\d{1,2})?$/',
             'servico_realizado' => 'nullable'
         ];
     }

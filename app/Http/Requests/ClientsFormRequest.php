@@ -21,7 +21,7 @@ class ClientsFormRequest extends FormRequest
     {
         return [
             'nome' => 'required|max:200',
-            'email' => ['required', Rule::unique('clients')->ignore($request->client)],
+            'email' => ['nullable', Rule::unique('clients')->ignore($request->client)],
             'contato' => ['required', 'max:15',Rule::unique('clients')->ignore($request->client)],
             'endereco' => 'required|max:200'
         ];

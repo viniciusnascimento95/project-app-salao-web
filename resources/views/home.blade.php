@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('card-title')
 Principal
 @endsection

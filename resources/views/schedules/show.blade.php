@@ -7,17 +7,14 @@
 @section('content')
 
     <div class="row">
-        <div class="col-sm-3">
-            {{-- <label>Email: {{$client->email}}</label> --}}
-        </div>
-        <div class="col-sm-3">
-            {{-- <label>Contato: {{$client->contato}}</label> --}}
-        </div>
-        <div class="col-sm-4">
-            {{-- <label>Endereço: {{$client->endereco}}</label> --}}
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>Descrição do serviço:</label>
+                <textarea class="form-control"  cols="30" rows="5">{{$schedule->descricao}}</textarea>
+            </div>
         </div>
     </div>
-    <a href="{{route('schedules.index')}}" class="btn btn-primary" data-toggle="tooltip" tooltip-right="Voltar">
+    <a href="javascript:history.back()" onload="window.history.back();" class="btn btn-primary" data-toggle="tooltip" tooltip-right="Voltar">
         <i class="fas fa-fw fa-lg fa-arrow-left"></i> Voltar
     </a>
 @endsection

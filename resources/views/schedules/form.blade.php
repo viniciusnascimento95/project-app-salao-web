@@ -1,3 +1,7 @@
+<style>
+
+
+</style>
 <form action="{{ $rota }}" method="POST" onsubmit="Salvando()" enctype="multipart/form-data">
     @csrf
 
@@ -20,8 +24,8 @@
         <div class="col-sm-5">
             <div class="form-group">
                 <label >Data e hora:</label>
-                <input type="datetime-local" name="data_hora_agendamento"
-                       class="form-control agendamento {{ $errors->has('data_hora_agendamento') ? 'is-invalid': '' }}"
+                
+                <input type="datetime-local" name="data_hora_agendamento" class="form-control agendamento {{ $errors->has('data_hora_agendamento') ? 'is-invalid': '' }}"
                        value="{{isset($schedule) && isset($schedule->data_hora_agendamento) && empty (old('data_hora_agendamento')) ?
                        $schedule->data_hora_agendamento_Formated() : old('data_hora_agendamento')}}" title="Selecione o data e hora">
 
@@ -36,8 +40,15 @@
             <div class="form-group">
                 <label>Realizado ?: </label><br>
                 <select class="form-control {{ $errors->has('servico_realizado') ? 'is-invalid': '' }}" name="servico_realizado">
-                  <option value="0">Não realizado</option>
-                  <option value="1">Realizado</option>
+                    <option value="0" selected>Não realizado</option>  
+                    <option value="1">Realizado</option>
+                    {{-- @if($schedule->servico_realizado === 0)
+                    <option value="0" selected>Não realizado</option>  
+                    <option value="1">Realizado</option> 
+                    @else           
+                    <option value="1" selected>Realizado</option>
+                    <option value="0" >Não realizado</option>  
+                    @endif --}}
                 </select>
             </div>
         </div>
@@ -78,7 +89,9 @@
         <i class="fas fa-fw fa-lg fa-save"></i> Salvar
     </button>
 </form>
+
 @section('scripts')
+
     <script>
         $('.select2').select2({
             language: 'pt-BR',

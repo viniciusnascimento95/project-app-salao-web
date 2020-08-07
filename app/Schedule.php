@@ -31,9 +31,4 @@ class Schedule extends Model
       return $data_hora_agendamento;
     }
 
-    public function valorFormated($value)
-    {
-        $valor = number_format($value, 2, ',', '.');
-    }
-
 }

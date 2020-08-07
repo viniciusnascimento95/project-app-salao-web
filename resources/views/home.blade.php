@@ -39,8 +39,7 @@ Principal
         Total de agendamentos: <strong>{{ $agendamentos->total() }}</strong>
         <br><br>
         {{ $agendamentos ?? ''->appends(request()->query())->links() }}
-    </div>
-        
+    </div>        
 </div> 
 @endsection
 @section('scripts')

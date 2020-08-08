@@ -9,6 +9,8 @@ use App\Http\Requests\SchedulesFormRequest;
 use Illuminate\Http\Response;
 use App\Repositories\ReportRepository;
 use phpDocumentor\Reflection\Types\Resource_;
+use \Validator;
+use Illuminate\Database\Eloquent\Collection;
 
 class ScheduleController extends Controller
 {
@@ -85,13 +87,28 @@ class ScheduleController extends Controller
     }
     public function buscar(Request $request)
     {
-       
-        $data_inicial = $request->inicial;
-        $data_final = $request->final;
+        $data_inicial = $request->data_inicial;
+        $data_final = $request->data_final ? $request->data_final : now()->format('Y-m-d');
+        $situacao_servico = $request->situacao_servico != null ? $request->situacao_servico : null;
 
-        $schedules = ReportRepository::buscar($data_inicial, $data_inicial);
-        dd($schedules);
+        $schedules = Schedule::where('id',0)->paginate(10);
 
-        return view('schedules.report', compact('schedules'));
+        $validacao = Validator::make($request->all(), [
+            'data_inicial' => ['required', 'date'],
+            'data_final' => ['nullable', 'date', 'after_or_equal:data_inicial']
+        ],[
+            //mensagens personalizadas
+            //Aqui...  
+        ]);
+        if($validacao->passes())
+        {
+            $schedules = ReportRepository::buscar($data_inicial, $data_final, $situacao_servico);
+            return view('schedules.report', compact('schedules', 'data_inicial', 'data_final', 'situacao_servico'));
+        }
+        else
+        {
+            return view('schedules.report', compact('schedules', 'data_inicial', 'data_final', 'situacao_servico'))->withErrors($validacao->messages());            
+        }
+
     }
 }

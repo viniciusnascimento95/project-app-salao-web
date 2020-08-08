@@ -1,19 +1,23 @@
 @extends('layouts.master')
 
 @section('card-title')
-Faturamento
+<i class="fas fa-chart-line"></i> Faturamento
 @endsection
 
-{{-- @section('button-novo')
-<a href="{{route('schedules.create')}}" data-toggle="tooltip" class="btn btn-success" tooltip-left="Nova junta médica">
-  <i class="fas  fa-lg fa-plus-square"></i>
-  Novo
-</a>
-@endsection --}}
-
-
-
 @section('content')
+<div class="row">
+  <div class="col-sm-12 my-2">
+      <form action="{{route('buscar')}}" method="GET" class="form-inline my-3 my-lg-0">
+          <label>Data inicial : &nbsp; </label>
+         <input class="form-control" type="date" name="inicial">
+         <label for="">Data final</label>
+         <input class="form-control" type="date" name="final">
+          <button class="btn btn-outline-success mt-2 mt-sm-0" type="submit">Buscar</button>
+      </form>
+  </div>
+</div>
+<br>
+
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
@@ -44,12 +48,13 @@ Faturamento
       </tr>
       @empty
       <tr>
-          <td colspan="7" align="center"><label style="font-weight: bolder">Nenhum agendamento cadastrado.</label></td>
+          <td colspan="7" align="center"><label style="font-weight: bolder">Nenhum agendamento.</label></td>
       </tr>
       @endforelse
     </tbody>
   </table>
   <p><strong>Total gastos por paginas:</strong> {{$schedules->sum('valor')}} </p>
+  {{-- <p class="text-right"><strong>Total de gastos :</strong>{{$total}}</p><br> --}}
 </div>
 
 <a href="{{route('home')}}" class="btn btn-primary" data-toggle="tooltip" tooltip-right="Voltar">

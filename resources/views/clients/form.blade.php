@@ -1,3 +1,10 @@
+<style>
+  .label-required:after {
+    content: "*";
+    color: red;
+  }
+  </style>
+
 @section('card-title')
 Formulário de cadastro de cliente
 @endsection
@@ -12,7 +19,7 @@ Formulário de cadastro de cliente
   <div class="row">
     <div class="col-sm-6 col-md-8">
       <div class="form-group">
-        <label class="">Nome:</label>
+        <label class="label-required">Nome:</label>
         <input type="text" name="nome" class="form-control {{ $errors->has('nome') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($client) && isset($client->nome) && empty (old('nome')) ? $client->nome : old('nome') }}" title="Nome do cliente">
         @if($errors->has('nome'))
         <div class="invalid-feedback">
@@ -34,7 +41,7 @@ Formulário de cadastro de cliente
     </div>
     <div class="col-sm-2 col-md-3">
       <div class="form-group">
-        <label class="">Contato:</label>
+        <label class="label-required">Contato:</label>
         <input type="text" name="contato" class="form-control telefone_celular {{ $errors->has('contato') ? 'is-invalid': '' }}" autocomplete="off" value="{{ isset($client) && isset($client->contato) && empty (old('contato')) ? $client->contato : old('contato') }}" title="Contato">
         @if($errors->has('contato'))
         <div class="invalid-feedback">

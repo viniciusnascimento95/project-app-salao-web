@@ -1,6 +1,8 @@
 <style>
-
-
+.label-required:after {
+  content: "*";
+  color: red;
+}
 </style>
 <form action="{{ $rota }}" method="POST" onsubmit="Salvando()" enctype="multipart/form-data">
     @csrf
@@ -12,7 +14,7 @@
     <div class="row">
         <div class="col-sm-5">
             <div class="form-group">
-            <label class="">Selecione o cliente:</label>
+            <label class="label-required">Selecione o cliente:</label>
                 <select class="form-control select2 {{ $errors->has('client_id') ? 'is-invalid': '' }}" style="width: 100%;" name="client_id" title="Selecione o cliente">
                     @if(Request::old('client_id') == NULL && isset($schedule))
                     <option value="{{$cliente->id}}">{{$cliente->nome}} / {{$cliente->contato}}</option>
@@ -23,7 +25,7 @@
 
         <div class="col-sm-5">
             <div class="form-group">
-                <label >Data e hora:</label>
+                <label class="label-required">Data e hora:</label>
                 
                 <input type="datetime-local" name="data_hora_agendamento" class="form-control agendamento {{ $errors->has('data_hora_agendamento') ? 'is-invalid': '' }}"
                        value="{{isset($schedule) && isset($schedule->data_hora_agendamento) && empty (old('data_hora_agendamento')) ?
@@ -38,17 +40,10 @@
         </div>
         <div class="col-sm-2">
             <div class="form-group">
-                <label>Realizado ?: </label><br>
+                <label class="label-required">Realizado ?: </label><br>
                 <select class="form-control {{ $errors->has('servico_realizado') ? 'is-invalid': '' }}" name="servico_realizado">
-                    <option value="0" selected>Não realizado</option>  
-                    <option value="1">Realizado</option>
-                    {{-- @if($schedule->servico_realizado === 0)
-                    <option value="0" selected>Não realizado</option>  
-                    <option value="1">Realizado</option> 
-                    @else           
-                    <option value="1" selected>Realizado</option>
-                    <option value="0" >Não realizado</option>  
-                    @endif --}}
+                    <option value="0" {{isset($schedule) ? (!empty($schedule->servico_realizado) ? ( $schedule->servico_realizado == 0 ? 'selected' : '') : '' ) : (old('servico_realizado') ? (old('servico_realizado') == 0 ? 'selected' : '') : '' ) }} >Não realizado</option>  
+                    <option value="1" {{isset($schedule) ? (!empty($schedule->servico_realizado) ? ( $schedule->servico_realizado == 1 ? 'selected' : '') : '' ) : (old('servico_realizado') ? (old('servico_realizado') == 1 ? 'selected' : '') : '' ) }}>Realizado</option>
                 </select>
             </div>
         </div>
@@ -64,8 +59,7 @@
                     </div>
                 @endif
             </div>
-        </div>
-        
+        </div>        
         <div class="col-md-2">
             <div class="form-group">
                 <label class="">Valor:</label>

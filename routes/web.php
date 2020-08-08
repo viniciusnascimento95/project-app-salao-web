@@ -23,3 +23,4 @@ Route::resource('clients', 'ClientController');
 Route::get('/client/pesquisar-select2', 'ClientController@getPesquisarSelect2')->name('client.getPesquisarSelect2');
 Route::resource('schedules', 'ScheduleController');
 Route::get('/relatorio', 'ScheduleController@report')->name('report');
+Route::get('/relatorio/buscar', 'ScheduleController@buscar')->name('buscar');

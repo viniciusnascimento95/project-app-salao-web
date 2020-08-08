@@ -7,6 +7,7 @@ use App\Client;
 use Illuminate\Http\Request;
 use App\Http\Requests\SchedulesFormRequest;
 use Illuminate\Http\Response;
+use App\Repositories\ReportRepository;
 use phpDocumentor\Reflection\Types\Resource_;
 
 class ScheduleController extends Controller
@@ -79,7 +80,18 @@ class ScheduleController extends Controller
     public function report()
     {
         $schedules = Schedule::orderBy('data_hora_agendamento', 'desc')->paginate(30);
-        // $total = Schedule::whereClient_id($client->id)->sum('valor');
+        // $total = Schedule::orderBy('data_hora_agendamento', 'desc')->sum('valor');
+        return view('schedules.report', compact('schedules'));
+    }
+    public function buscar(Request $request)
+    {
+       
+        $data_inicial = $request->inicial;
+        $data_final = $request->final;
+
+        $schedules = ReportRepository::buscar($data_inicial, $data_inicial);
+        dd($schedules);
+
         return view('schedules.report', compact('schedules'));
     }
 }

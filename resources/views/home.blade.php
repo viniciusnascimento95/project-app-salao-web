@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('card-title')
-Principal
+<i class="fas fa-home"></i> Principal
 @endsection
 <style>
     #home{

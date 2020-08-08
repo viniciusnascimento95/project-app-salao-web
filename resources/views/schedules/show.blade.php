@@ -7,6 +7,7 @@
 @section('content')
 
     <div class="row">
+        <label for="">Valor do serviço: {{$schedule->valor}}</label>
         <div class="col-sm-12">
             <div class="form-group">
                 <label>Descrição do serviço:</label>

@@ -19,6 +19,15 @@
       <li class="nav-item">
         <a class="nav-link text-white" href="{{route('report')}}"><i class="fas fa-chart-line"></i> Relatório</a>
       </li> 
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();"> <i class="fas fa-sign-out-alt"></i>
+          {{ __('Logout') }}
+          </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+        @csrf
+        </form>
+      </li>
     </ul>
   </aside>
 </div>

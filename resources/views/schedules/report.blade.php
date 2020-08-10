@@ -50,7 +50,6 @@
       </form>
   </div>
 </div>
-
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
@@ -99,7 +98,9 @@
 <a href="{{route('home')}}" class="btn btn-primary" data-toggle="tooltip" tooltip-right="Voltar">
   <i class="fas fa-fw fa-lg fa-arrow-left"></i> Voltar
 </a>
+
 @endsection
+
 @section('scripts')
 
 @if ($message = Session::get('success'))

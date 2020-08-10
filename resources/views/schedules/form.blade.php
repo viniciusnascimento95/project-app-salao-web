@@ -90,8 +90,17 @@
 
 @section('scripts')
 
+{{-- <script>
+$('#datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    startDate: '-3d',
+    language: 'pt-BR',
+});
+</script> --}}
+
     <script>
         $('.select2').select2({
+            placeholder: "Selecione um cliente",
             language: 'pt-BR',
             // minimumInputLength: 1,
             ajax: {

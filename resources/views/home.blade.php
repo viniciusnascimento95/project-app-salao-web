@@ -4,7 +4,8 @@
 @endsection
 <style>
     #home{
-        background-image: url('https://thumbs.dreamstime.com/z/%C3%ADcones-lineares-m%C3%ADnimos-da-barbearia-do-sal%C3%A3o-de-beleza-e-cabeleireiro-no-fundo-coral-pastel-teste-padr%C3%A3o-sem-emenda-cuidado-141537200.jpg') ;
+        /* background-image: url('https://image.freepik.com/vetores-gratis/mascara-de-beleza-cuidados-com-a-pele-mulher-limpeza-e-escovar-o-rosto-mascaras-de-tratamento-de-acne-dos-desenhos-animados_102902-686.jpg') ; */
+        background-image: url('https://laserstetica.com.br/site/wp-content/uploads/2016/05/limpeza-facial.jpg') ;
         background-size: cover;
         border-radius: 15px;    }
 </style>
@@ -38,6 +39,7 @@
         Total de agendamentos: <strong>{{ $agendamentos->total() }}</strong>
         <br><br>
         {{ $agendamentos ?? ''->appends(request()->query())->links() }}
+        <br>
     </div>        
 </div> 
 @endsection

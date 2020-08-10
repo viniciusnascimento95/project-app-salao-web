@@ -12,25 +12,29 @@
     @endisset
 
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-4">
             <div class="form-group">
             <label class="label-required">Selecione o cliente:</label>
                 <select class="form-control select2 {{ $errors->has('client_id') ? 'is-invalid': '' }}" style="width: 100%;" name="client_id" title="Selecione o cliente">
+                    @if(Request::old('client_id'))
+                        <option value="{{$pessoa->id}}">{{$pessoa->nome}} / {{$pessoa->contato}}</option>
+                    @endif
                     @if(Request::old('client_id') == NULL && isset($schedule))
-                    <option value="{{$cliente->id}}">{{$cliente->nome}} / {{$cliente->contato}}</option>
+                        <option value="{{$cliente->id}}">{{$cliente->nome}} / {{$cliente->contato}}</option>
                     @endif
                 </select>
             </div>
         </div>
 
-        <div class="col-sm-5">
+        <div class="col-sm-4">
             <div class="form-group">
                 <label class="label-required">Data e hora:</label>
-                
-                <input type="datetime-local" id="datepicker" name="data_hora_agendamento" class="form-control agendamento {{ $errors->has('data_hora_agendamento') ? 'is-invalid': '' }}"
-                       value="{{isset($schedule) && isset($schedule->data_hora_agendamento) && empty (old('data_hora_agendamento')) ?
-                       $schedule->data_hora_agendamento_Formated() : old('data_hora_agendamento')}}" title="Selecione o data e hora">
-
+                <input type="text" class="form-control" id="data_fake">
+                <div id="app">
+                    <example-component data-agendamento="{{isset($schedule) && isset($schedule->data_hora_agendamento) && empty (old('data_hora_agendamento')) ?
+                        $schedule->data_hora_agendamento_Formated() : (old('data_hora_agendamento') ? ($data_hora ? $data_hora : ''): '')}}"></example-component>
+                </div>
+               
                 @if($errors->has('data_hora_agendamento'))
                     <div class="invalid-feedback">
                         {{$errors->first('data_hora_agendamento')}}
@@ -38,7 +42,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <div class="form-group">
                 <label class="label-required">Realizado ?: </label><br>
                 <select class="form-control {{ $errors->has('servico_realizado') ? 'is-invalid': '' }}" name="servico_realizado">
@@ -116,5 +120,12 @@ $('#datepicker').datepicker({
                 }
             }
         });
+    </script>
+    <script>
+        $(document).ready()
+        {
+            var element = document.getElementById("data_fake"); // notice the change
+            element.parentNode.removeChild(element);
+        }
     </script>
 @endsection

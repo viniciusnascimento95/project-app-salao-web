@@ -1,23 +1,24 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <datetime type="datetime" v-model="dateTime13.valor" format="dd/MM/yyyy HH:mm" name="data_hora_agendamento" input-id="data_hora_agendamento"></datetime>
 </template>
 
 <script>
+import { Datetime } from 'vue-datetime'
+import 'vue-datetime/dist/vue-datetime.css'
     export default {
+        props: [
+            'dataAgendamento'
+        ],
+        data(){
+            return{
+                dateTime13: {
+                    valor: '',
+                },
+            }
+        },
         mounted() {
-            console.log('Component mounted.')
-        }
+            this.dateTime13.valor = this.dataAgendamento
+            console.log(this.dataAgendamento, this.datetime)
+        },
     }
 </script>

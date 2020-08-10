@@ -34,10 +34,7 @@
                     <example-component data-agendamento="{{isset($schedule) && isset($schedule->data_hora_agendamento) && empty (old('data_hora_agendamento')) ?
                         $schedule->data_hora_agendamento_Formated() : (old('data_hora_agendamento') ? ($data_hora ? $data_hora : ''): '')}}"></example-component>
                 </div>
-                {{-- <input type="datetime-local" name="data_hora_agendamento" class="form-control agendamento {{ $errors->has('data_hora_agendamento') ? 'is-invalid': '' }}"
-                       value="{{isset($schedule) && isset($schedule->data_hora_agendamento) && empty (old('data_hora_agendamento')) ?
-                       $schedule->data_hora_agendamento_Formated() : old('data_hora_agendamento')}}" title="Selecione o data e hora"> --}}
-
+               
                 @if($errors->has('data_hora_agendamento'))
                     <div class="invalid-feedback">
                         {{$errors->first('data_hora_agendamento')}}

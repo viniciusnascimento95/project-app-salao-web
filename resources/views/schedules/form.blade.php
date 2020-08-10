@@ -27,7 +27,7 @@
             <div class="form-group">
                 <label class="label-required">Data e hora:</label>
                 
-                <input type="datetime-local" name="data_hora_agendamento" class="form-control agendamento {{ $errors->has('data_hora_agendamento') ? 'is-invalid': '' }}"
+                <input type="datetime-local" id="datepicker" name="data_hora_agendamento" class="form-control agendamento {{ $errors->has('data_hora_agendamento') ? 'is-invalid': '' }}"
                        value="{{isset($schedule) && isset($schedule->data_hora_agendamento) && empty (old('data_hora_agendamento')) ?
                        $schedule->data_hora_agendamento_Formated() : old('data_hora_agendamento')}}" title="Selecione o data e hora">
 
@@ -86,8 +86,17 @@
 
 @section('scripts')
 
+{{-- <script>
+$('#datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    startDate: '-3d',
+    language: 'pt-BR',
+});
+</script> --}}
+
     <script>
         $('.select2').select2({
+            placeholder: "Selecione um cliente",
             language: 'pt-BR',
             // minimumInputLength: 1,
             ajax: {

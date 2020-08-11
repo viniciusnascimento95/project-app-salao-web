@@ -16,7 +16,7 @@
         <div class="form-group">
             <div class="card-body">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="alert alert-secondary" style="border-color: #4759e4; border-radius: 30px;">
+                    <div class="alert alert-secondary" style="border-color: #4759e4; background-color: #ffffff; border-radius: 30px;">
                         <p class="text-center">
                             <a href="{{route('schedules.edit', $item->id)}}" title="Atualizar" style="border-radius: 30px; background-color: #cb9ca5; color: black;" class="btn-sm">
                                 Atualizar agendamento

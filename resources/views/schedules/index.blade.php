@@ -19,7 +19,7 @@ Agendamentos
         <th scope="col">#</th>
         <th scope="col">Cliente</th>
         <th scope="col">Data do agendamento</th>
-        <th scope="col">valor</th>
+        <th scope="col">Valor</th>
         <th scope="col">Realizado</th>
         <th class="text-center" scope="col">Ações</th>
         <th class="text-center" scope="col">Excluir</th>
@@ -31,7 +31,6 @@ Agendamentos
         <th>{{$shedule->id}}</th>
         <td>{{$shedule->client->nome}}</td>
         <td>{{$shedule->data_hora_agendamento->format('d/m/Y H:i')}}</td>
-        {{-- <td>{{$shedule->data_hora_agendamento}}</td> --}}
         <td>{{$shedule->valor}}</td>
         @if ($shedule->servico_realizado == 0 )
         <td>Não realizado</td>
@@ -56,7 +55,6 @@ Agendamentos
           @method('DELETE')
           <a href="{{ route('schedules.destroy',$shedule->id) }}" title="Excluir cliente" class="text-danger">
               <span class="fa-stack">
-                {{-- <i class="fas fa-trash"></i> --}}
             </span>
           </a>
             <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este agendamento de serviço?')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>

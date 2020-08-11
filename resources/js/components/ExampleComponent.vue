@@ -1,5 +1,5 @@
 <template>
-    <datetime type="datetime" v-model="dateTime13.valor" format="dd/MM/yyyy HH:mm" name="data_hora_agendamento" input-id="data_hora_agendamento"></datetime>
+    <datetime type="datetime" v-model="dateTime13.valor" format="dd/MM/yyyy HH:mm" name="data_hora_agendamento" input-id="data_hora_agendamento" input-class="form-control"></datetime>
 </template>
 
 <script>

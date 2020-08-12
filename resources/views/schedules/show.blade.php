@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('card-title')
-    Detalhe do serviço cliente(a): {{$schedule->client->nome}}
+    Detalhe do serviço cliente(a): {{$schedule->client->nome}} | {{$schedule->data_hora_agendamento->format('d/m/Y H:i')}}
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
                 <label>Descrição do serviço:</label>
                 <textarea class="form-control"  cols="30" rows="5">{{$schedule->descricao}}</textarea>
             </div>
-        </div>
+        </div>        
     </div>
     <a href="javascript:history.back()" onload="window.history.back();" class="btn btn-primary" data-toggle="tooltip" tooltip-right="Voltar">
         <i class="fas fa-fw fa-lg fa-arrow-left"></i> Voltar

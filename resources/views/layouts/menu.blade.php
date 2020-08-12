@@ -14,7 +14,7 @@
         <a class="nav-link text-white" href="{{route('schedules.index')}}"><i class="fas fa-address-book"></i> Agendamentos</a>
       </li>  
       <li class="nav-item">
-        <a class="nav-link text-white" href="{{route('schedules.create')}}"><i class="fas fa-address-card"></i> Novo agendamento</a>
+        <a class="nav-link text-white" href="{{route('schedules.create')}}"><i class="far fa-calendar-alt"></i> Novo agendamento</a>
       </li> 
       <li class="nav-item">
         <a class="nav-link text-white" href="{{route('report')}}"><i class="fas fa-chart-line"></i> Relatório</a>

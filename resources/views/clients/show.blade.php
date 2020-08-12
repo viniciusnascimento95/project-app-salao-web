@@ -56,9 +56,9 @@
                     <i class="fas fa-pencil-alt"></i>
                 </span>
             </a>
-            <a href="{{route('schedules.show', $shedule->id)}}" title="Visualizar cliente" class="text-primary">
+            <a href="{{route('schedules.show', $shedule->id)}}" title="Detalhe do atendimento">
               <span class="fa-stack">
-                  <i class="fas fa-eye"></i>
+                <i class="fas fa-money-check-alt"></i>
               </span>
           </a>
           </td>          

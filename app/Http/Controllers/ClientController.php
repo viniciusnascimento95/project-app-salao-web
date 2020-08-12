@@ -16,7 +16,7 @@ class ClientController extends Controller
 
     public function index()
     {
-        $clients = Client::orderBy('updated_at', 'desc')->paginate(10);
+        $clients = Client::orderBy('nome', 'asc')->paginate(10);
         return view('clients.index', compact('clients'));
     }
 
@@ -63,16 +63,30 @@ class ClientController extends Controller
         if (strlen($inputPesquisa) < 1) {
             return null;
         }
-        
-        $pessoas = Client::get();
 
+        $inputPesquisa = explode(' ', $inputPesquisa);
+        $inputPesquisa = implode('%', $inputPesquisa);
+
+        $pessoas = Client::select('clients.*')->where(function($query) use ($inputPesquisa){
+            return $query->orWhere('clients.nome', 'LIKE', '%' . $inputPesquisa . '%');
+        })
+        ->paginate(5);
+
+        $morePages = $pessoas->currentPage() < $pessoas->lastPage();
         $dadosFormatados = [];
 
         foreach ($pessoas as $pessoa) {
             $dadosFormatados[] = ['id' => $pessoa->id, 'text' => $pessoa->nome . " | " . $pessoa->contato];
         }
 
-        return response()->json($dadosFormatados);
+        $results = array(
+            "results" => $dadosFormatados,
+            "pagination" => array(
+                "more" => $morePages
+            )
+        );
+
+        return response()->json($results);
     }
 
     public function destroy(Client $client)

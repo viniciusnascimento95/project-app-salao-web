@@ -89,38 +89,27 @@
 </form>
 
 @section('scripts')
-
-{{-- <script>
-$('#datepicker').datepicker({
-    format: 'mm/dd/yyyy',
-    startDate: '-3d',
+<script>
+    //Consulta via AJAX de clients
+$('.select2').select2({
     language: 'pt-BR',
-});
-</script> --}}
+    placeholder: "Selecione um cliente",
+    // minimumInputLength: 4,
+    ajax: {
+        url: '/client/pesquisar-select2',
+        data: function (params) {
+        var query = {
+            type: 'public',
+            search: params.term,
+            page: params.page || 1
+        }
 
-    <script>
-        $('.select2').select2({
-            placeholder: "Selecione um cliente",
-            language: 'pt-BR',
-            // minimumInputLength: 1,
-            ajax: {
-                url: '/client/pesquisar-select2',
-                dataType: 'json',
-                data: function (params) {
-                    var query = {
-                        search: params.term,
-                        type: 'public'
-                    }
-                    return query;
-                },
-                processResults: function (data) {
-                    return {
-                        results: data
-                    };
-                }
-            }
-        });
-    </script>
+        // Query parameters will be ?search=[term]&page=[page]
+        return query;
+    }
+  }
+});
+</script>
     <script>
         $(document).ready()
         {

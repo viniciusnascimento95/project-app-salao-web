@@ -57,10 +57,8 @@
         <th scope="col">#</th>
         <th scope="col">Cliente</th>
         <th scope="col">Data do agendamento</th>
-        <th scope="col">valor</th>
+        <th scope="col">Valor</th>
         <th scope="col">Realizado</th>
-        {{-- <th class="text-center" scope="col">Ações</th>
-        <th class="text-center" scope="col">Excluir</th> --}}
       </tr>
     </thead>
     <tbody>
@@ -69,12 +67,11 @@
         <th>{{$shedule->id}}</th>
         <td>{{$shedule->client->nome}}</td>
         <td>{{$shedule->data_hora_agendamento->format('d/m/Y H:i')}}</td>
-        {{-- <td>{{$shedule->data_hora_agendamento}}</td> --}}
-        <td>R$  {{$shedule->valor}}</td>
+        <td>R${{$shedule->valor}}</td>
         @if ($shedule->servico_realizado == 0 )
-        <td>Não realizado</td>
+        <td><span class="badge badge-secondary">Não realizado</span></td>
         @else
-        <td>Realizado</td>
+        <td><span class="badge badge-success">Realizado</span></td>
         @endif
        
       </tr>

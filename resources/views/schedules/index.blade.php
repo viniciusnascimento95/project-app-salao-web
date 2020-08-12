@@ -30,12 +30,12 @@ Agendamentos
       <tr>
         <th>{{$shedule->id}}</th>
         <td>{{$shedule->client->nome}}</td>
-        <td>{{$shedule->data_hora_agendamento->format('d/m/Y H:i')}}</td>
+        <td class="text-left">{{$shedule->data_hora_agendamento->format('d/m/Y H:i')}}</td>
         <td>{{$shedule->valor}}</td>
         @if ($shedule->servico_realizado == 0 )
-        <td>Não realizado</td>
+        <td><span class="badge badge-secondary">Não realizado</span></td>
         @else
-        <td>Realizado</td>
+        <td><span class="badge badge-success">Realizado</span></td>
         @endif
         <td class="text-center">
           <a href="{{route('schedules.edit', $shedule->id)}}" title="Editar dados" class="text-dark">
@@ -43,7 +43,7 @@ Agendamentos
                   <i class="fas fa-pencil-alt"></i>
               </span>
           </a>
-          <a href="{{route('schedules.show', $shedule->id)}}" title="Visualizar cliente" class="text-primary">
+          <a href="{{route('schedules.show', $shedule->id)}}" title="Visualizar agendamento" class="text-primary">
             <span class="fa-stack">
                 <i class="fas fa-eye"></i>
             </span>

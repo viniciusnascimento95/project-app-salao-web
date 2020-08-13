@@ -10,8 +10,16 @@ Clientes
   Novo
 </a>
 @endsection
-
 @section('content')
+<div class="row">
+  <div class="col-sm-12 my-2">
+      <form action="{{ route('client.getBuscar') }}" method="GET" class="form-inline">
+          <input name="valor" value="{{ request()->query('valor') }}" class="form-control mr-sm-2 col-12 col-sm-6 col-md-5 col-lg-4" type="search"
+              placeholder="Pesquisar" aria-label="Search">
+          <button class="btn btn-outline-success mt-2 mt-sm-0" type="submit">Buscar</button>
+      </form>
+  </div>
+</div>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
@@ -58,15 +66,4 @@ Clientes
   @component('components.page_rodape', ['modelo' => $clients])
   @endcomponent
   <!--FIM Paginacao dos dados-->
-
-  <script>
-    $('#formulario').on('submit', function () {
-
-      var confirmado = confirm('Deseja deletar esses dados?');
-
-      if (! confirmado) return false;
-      });
-  </script>
 @endsection
-
-

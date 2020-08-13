@@ -13,24 +13,15 @@
 <div class="container-fluid" id="home">
     <div class="row">
         @foreach ($agendamentos as $item)
-        <div class="form-group">
+        <div class="card" style="border-color: #4759e4; margin: 2%; border-radius: 30px;">
             <div class="card-body">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="alert alert-secondary" style="border-color: #4759e4; background-color: #ffffff; border-radius: 30px;">
-                        <p class="text-center">
-                            <a href="{{route('schedules.edit', $item->id)}}" title="Atualizar" style="border-radius: 30px; background-color: #cb9ca5; color: black;" class="btn-sm">
-                                Atualizar agendamento
-                            </a>       
-                            </p> 
-                        <span class=""><i class="fa fa-calendar"></i> {{$item->data_hora_agendamento->format('d/m/Y H:i')}}</span><br>
-                        <div class="card-text">
-                            <span class="info-box-text text-capitalize"><strong>Cliente(a): </strong> {{$item->client->nome}} </span><br>
-                            <span class="info-box-text text-capitalize"><strong>Contato(a): </strong> {{$item->client->contato}} </span><br>
-                            <span class="info-box-number"><strong>Valor : </strong>{{$item->valor}}</span><br>
-                        </div>
-                        <span class="font-weight-lighter">{{$item->descricao}}</span>
-                    </div>                                    
-                </div>
+              <h5 class="card-title"><i class="far fa-user"></i> {{$item->client->nome}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-calendar"></i> {{$item->data_hora_agendamento->format('d/m/Y H:i')}}</h6>
+              <p class="card-text">{{$item->descricao}}</p>
+              <a href="#" class="card-link"></a>
+              <a href="{{route('schedules.edit', $item->id)}}" title="Atualizar" style="border-radius: 30px; background-color: #cb9ca5; color: black;" class="btn-sm">
+                Atualizar agendamento
+              </a>
             </div>
         </div>
         @endforeach

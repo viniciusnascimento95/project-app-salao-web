@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Client;
 use App\Schedule;
 use Illuminate\Http\Request;
+use App\Repositories\ClientRepository;
 use App\Http\Requests\ClientsFormRequest;
 
 class ClientController extends Controller
@@ -32,6 +33,15 @@ class ClientController extends Controller
         $client->save();
 
         return redirect()->route("clients.index");
+    }
+
+    public function getBuscar(Request $request)
+    {
+        $valor = $request->valor;
+
+        $clients = ClientRepository::buscar($request->valor);
+
+        return view('clients.index', compact('clients'));
     }
 
     public function show(Client $client)

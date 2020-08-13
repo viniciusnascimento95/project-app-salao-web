@@ -86,7 +86,6 @@
   {{-- <p class="text-right"><strong>Total de gastos :</strong>{{$total}}</p><br> --}}
 </div>
 
-
 <!--Paginacao dos dados-->
 @component('components.page_rodape', ['modelo' => $schedules])
 @endcomponent

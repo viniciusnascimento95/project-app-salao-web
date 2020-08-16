@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SchedulesFormRequest;
 use Illuminate\Http\Response;
 use App\Repositories\ReportRepository;
+use App\Repositories\ScheduleRepository;
 use phpDocumentor\Reflection\Types\Resource_;
 use \Validator;
 use Illuminate\Database\Eloquent\Collection;
@@ -24,6 +25,15 @@ class ScheduleController extends Controller
     {
         // ->orderBy('servico_realizado', 'desc')
         $schedules = Schedule::orderBy('servico_realizado', 'asc')->paginate(10);
+        return view('schedules.index', compact('schedules'));
+    }
+
+    public function getBuscar(Request $request)
+    {
+        $valor = $request->valor;
+
+        $schedules = ScheduleRepository::buscar($request->valor);
+
         return view('schedules.index', compact('schedules'));
     }
 

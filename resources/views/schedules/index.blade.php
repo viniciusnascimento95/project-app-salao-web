@@ -12,11 +12,22 @@ Agendamentos
 @endsection
 
 @section('content')
+
+<div class="row">
+  <div class="col-sm-12 my-2">
+      <form action="{{ route('schedule.getBuscar') }}" method="GET" class="form-inline">
+          <input name="valor" value="{{ request()->query('valor') }}" class="form-control mr-sm-2 col-12 col-sm-6 col-md-5 col-lg-4" type="search"
+              placeholder="Pesquisar Descrição/Código/Hora" aria-label="Search">
+          <button class="btn btn-outline-success mt-2 mt-sm-0" type="submit">Buscar</button>
+      </form>
+  </div>
+</div>
+
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">#</th>
+        <th class="text-center" scope="col">Código</th>
         <th scope="col">Cliente</th>
         <th scope="col">Data do agendamento</th>
         <th scope="col">Valor</th>
@@ -28,7 +39,7 @@ Agendamentos
     <tbody>
       @forelse ($schedules as $shedule)
       <tr>
-        <th>{{$shedule->id}}</th>
+        <th class="text-center">{{$shedule->id}}</th>
         <td>{{$shedule->client->nome}}</td>
         <td class="text-left">{{$shedule->data_hora_agendamento->format('d/m/Y H:i')}}</td>
         <td>{{$shedule->valor}}</td>
